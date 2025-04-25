@@ -1,11 +1,29 @@
 import React from "react";
 import Post from "../Post/Post";
 import { useState, useEffect } from "react";
+import Container from '@mui/material/Container';
+import { makeStyles } from "@mui/styles";
+
+
+
+const useStyles = makeStyles((theme) => ({
+    conatainer: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f5f5f5',
+        height: '100vh',
+        borderRadius: '50px',
+    }
+}))
+
 
 function Home() {
     const[error, setError] = useState(null);
     const[isLoaded, setIsLoaded] = useState(false);
     const[posts, setPosts] = useState([]);
+    const classes = useStyles();
 
     useEffect(() =>{
         fetch("/posts")
@@ -28,13 +46,12 @@ function Home() {
         return <div>Loading ...</div>
     } else{
         return(
-            <div className="container">
-                <h1>Home</h1>
+            
+            <Container fixed className={classes.conatainer}>
                 {posts.map(post =>(
                     <Post title={post.title} text={post.text}/>
                 ))}
-            </div>
-
+            </Container>
         );
     }
 }
