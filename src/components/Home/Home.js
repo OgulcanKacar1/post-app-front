@@ -49,7 +49,7 @@ function Home() {
             
             <Container fixed className={classes.conatainer}>
                 {posts.map(post =>(
-                    <Post title={post.title} text={post.text}/>
+                    <Post userId={post.userId} username={post.username} title={post.title} text={post.text}/>
                 ))}
             </Container>
         );

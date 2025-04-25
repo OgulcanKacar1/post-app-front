@@ -12,6 +12,7 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CommendIcon from '@mui/icons-material/Comment';
+import { Link } from 'react-router-dom';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -34,7 +35,7 @@ const ExpandMore = styled((props) => {
 
 
 function Post(props){
-    const {title, text} = props;
+    const {title, text, userId, username} = props;
     const [expanded, setExpanded] = React.useState(false);
     
 
@@ -49,9 +50,12 @@ function Post(props){
             <Card sx={{ width: 800, margin: 2 , textAlign: 'left'}}>
                 <CardHeader
                     avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                        R
-                    </Avatar>
+                    <Link sx={{textDecoration: 'none' ,boxShadow:'none', color:'white'}} to={{pathname: '/users/'+userId}}>
+                        <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                        {username.charAt(0).toUpperCase()}
+                        </Avatar>
+                    </Link>
+                    
                     }
                     action={
                     <IconButton aria-label="settings">
